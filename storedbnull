@@ -1,0 +1,104 @@
+-- MySQL dump 10.13  Distrib 8.0.15, for Win64 (x86_64)
+--
+-- Host: localhost    Database: storemngt
+-- ------------------------------------------------------
+-- Server version	8.0.15
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+ SET NAMES utf8mb4 ;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `login`
+--
+
+DROP TABLE IF EXISTS `login`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `login` (
+  `userid` varchar(10) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  PRIMARY KEY (`userid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `login`
+--
+
+LOCK TABLES `login` WRITE;
+/*!40000 ALTER TABLE `login` DISABLE KEYS */;
+INSERT INTO `login` VALUES ('19M01','12345'),('20M01','54321'),('21M01','12345'),('22M01','12345');
+/*!40000 ALTER TABLE `login` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `signup`
+--
+
+DROP TABLE IF EXISTS `signup`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `signup` (
+  `userid` varchar(10) DEFAULT NULL,
+  `shop_name` varchar(50) NOT NULL,
+  `store_capacity` int(11) NOT NULL,
+  `shelf_capacity` int(11) NOT NULL,
+  `types_of_shelf` int(11) NOT NULL,
+  KEY `userid` (`userid`),
+  CONSTRAINT `signup_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `login` (`userid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `signup`
+--
+
+LOCK TABLES `signup` WRITE;
+/*!40000 ALTER TABLE `signup` DISABLE KEYS */;
+INSERT INTO `signup` VALUES ('19M01','Paradise',10,50,5),('20M01','Haldiram',10,20,6),('21M01','Maharani Zaika',10,25,4),('22M01','Topan Das',15,30,5);
+/*!40000 ALTER TABLE `signup` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `store`
+--
+
+DROP TABLE IF EXISTS `store`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `store` (
+  `userid` varchar(10) NOT NULL,
+  `current_capacity` varchar(100) DEFAULT NULL,
+  KEY `userid` (`userid`),
+  CONSTRAINT `store_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `login` (`userid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `store`
+--
+
+LOCK TABLES `store` WRITE;
+/*!40000 ALTER TABLE `store` DISABLE KEYS */;
+INSERT INTO `store` VALUES ('19M01','37,0,0,0,0,0'),('20M01','0,0,0,0,0,0'),('21M01','25,0,0,0'),('22M01','30,0,0,0,0');
+/*!40000 ALTER TABLE `store` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2020-02-29 19:18:12
